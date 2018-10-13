@@ -11,6 +11,7 @@ def getLocalConfig():
             return info
     except Exception as e:
         log.writelog()
+        raise e
    
    
 
