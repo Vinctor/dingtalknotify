@@ -3,3 +3,5 @@ log
 local.json
 code/log.pyc
 code/info.pyc
+my.log
+log/pids
