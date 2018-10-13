@@ -30,5 +30,6 @@ def logPID():
     now_time_string=now_time.strftime('%Y-%m-%d %H:%M:%S')
     file_path=os.path.join(log_dir,'pids')
     pid=os.getpid()
+    result=now_time_string+':-'+str(pid)+'\n'
     with open(file_path,'a') as f:
-        f.write(now_time_string+':-'+str(pid)+'\n')
+        f.write(result)
