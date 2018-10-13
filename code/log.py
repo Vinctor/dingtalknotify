@@ -31,4 +31,4 @@ def logPID():
     file_path=os.path.join(log_dir,'pids')
     pid=os.getpid()
     with open(file_path,'a') as f:
-        f.write(now_time_string+':-'+str(pid))
+        f.write(now_time_string+':-'+str(pid)+'\n')
