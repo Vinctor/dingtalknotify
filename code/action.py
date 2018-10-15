@@ -43,13 +43,13 @@ def doschedule():
         local_info=info.getLocalConfig()
         access_token=local_info["access_token"]
         content=local_info["content"]
-        schedule.every().day.at("11:00").do(action,access_token,content)
+        schedule.every().day.at("10:20").do(action,access_token,content)
         #schedule.every().day.at("18:30").do(action,access_token,content)
         #schedule.every(5).seconds.do(action,access_token,content)
 
         while True:
             schedule.run_pending()
-            time.sleep(1)
+            time.sleep(10)
     except ValueError as identifier:
         log.writelog()
 
