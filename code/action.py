@@ -20,9 +20,9 @@ url_head="https://oapi.dingtalk.com/robot/send"
 #发起请求
 def action(access_token,content):
     #时间判断
-    if  intercept.canGoOn():
-        #return
-        pass
+    if not intercept.canGoOn():
+        return
+        #pass
 
     url=url_head+'?access_token='+access_token
     json_content=json.loads(content)
