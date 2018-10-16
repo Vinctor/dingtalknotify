@@ -1,35 +1,30 @@
 # -*- coding: utf-8 -*-
 
-import datetime
-import os
-import traceback
+import log
+import time
 
-log_dir='log'
 
-#记录日志
-def writelog(msg=None):
-    if msg==None:
-         msg=traceback.format_exc()
-    if not os.path.exists(log_dir):
-        os.mkdir(log_dir)
-    
-    now_time = datetime.datetime.now()
-    now_time_string=now_time.strftime('%Y-%m-%d %H:%M:%S')
-    file_name=now_time.strftime('%Y-%m-%d')
-    file_path=os.path.join(log_dir,file_name)
-    result=now_time_string+'--'+msg+'\n'
-    with open(file_path,'a') as f:
-        f.write(result)
+def canGoOn():
+    #周几
+    day_in_week=time.strftime("%w", time.localtime())
+    #print 'day_in_week:'+day_in_week
+    log.writelog('day_in_week:'+str(day_in_week))
+    #周六周日不发送
+    day_in_week=int(day_in_week)
+    if day_in_week==6 or day_in_week==0:
+        return False
 
-#记录当前进程PID
-def logPID():
-    if not os.path.exists(log_dir):
-        os.mkdir(log_dir)
+    #20点之后 7点之前不发送
+    hour_in_day=time.strftime("%H", time.localtime())
+    #print 'hour_in_day:'+hour_in_day
+    log.writelog('hour_in_day:'+str(hour_in_day))
+    hour_in_day=int(hour_in_day)
+    if hour_in_day>20 or hour_in_day<=7:
+        return False
+    return True
 
-    now_time = datetime.datetime.now()
-    now_time_string=now_time.strftime('%Y-%m-%d %H:%M:%S')
-    file_path=os.path.join(log_dir,'pids')
-    pid=os.getpid()
-    result=now_time_string+':-'+str(pid)+'\n'
-    with open(file_path,'a') as f:
-        f.write(result)
+   
+
+
+if __name__=='__main__':
+    print canGoOn()
