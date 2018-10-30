@@ -2,6 +2,7 @@
 
 import log
 import time
+import datetime
 
 
 def canGoOn():
@@ -24,7 +25,19 @@ def canGoOn():
     return True
 
    
+def nextWorkDay():
+   today=datetime.datetime.now()
+   #today=datetime.datetime.strptime('2018-11-2', "%Y-%m-%d")
+   day_in_week=int(today.strftime("%w"))
+   nextDay=today+datetime.timedelta(days=1)
+   day_in_week=int(nextDay.strftime("%w"))
+   while day_in_week==0 or day_in_week==6:
+        nextDay=nextDay+datetime.timedelta(days=1)
+        day_in_week=int(nextDay.strftime("%w"))
+   print day_in_week
+   return nextDay.strftime("%Y-%m-%d")
 
 
 if __name__=='__main__':
-    print canGoOn()
+   print  nextWorkDay()
+    #print canGoOn()
